@@ -20,7 +20,7 @@ namespace MohawkGame2D
             // Set up variables once game is ready
             position = new(Window.Width / 2, 100);
 
-            // 
+            // Create ball outline
             Draw.LineSize = 1;
         }
         public void Update()
@@ -33,7 +33,13 @@ namespace MohawkGame2D
 
             // Draw ball
             Draw.FillColor = color;
-            Draw.Circle(position, radius);
+            // Draw.Circle(position, radius);
+
+            // Draw ellipse
+            float angle = Time.SecondsElapsed * MathF.Tau / 1;
+            float w = MathF.Cos(angle) * radius * 2;
+            float h = MathF.Sin(angle) * radius * 2;
+            Draw.Ellipse(position.X, position.Y, w, h);
         }
         void ApplyGravity()
         {
